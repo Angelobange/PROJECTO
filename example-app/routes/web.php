@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\FaturaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-     $nome = "Angelo Bange";
-
-    return view('welcome',['nome'=>$nome]);
-   
+    return view('welcome');
 });
+Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
+Route::get('/clientes/createe', [ClienteController::class, 'create'])->name('clientes.createe');
+Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
+Route::get('/clientes/create', [ClienteController::class,'create']);
+Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('fornecedores.index');
+Route::get('/fornecedores/create', [FornecedorController::class,'create']);
+Route::get('/faturas', [FaturaController::class, 'index'])->name('faturas.index');
